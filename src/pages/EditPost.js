@@ -52,13 +52,21 @@ const EditPost = ({data}) => {
                 <input type="color" id="color" value={post.color} onChange={handleChange} name="color" /><br />
                 <br/>
 
-                <div onChange={handleChange}>
-                    <input type="radio" id="spec1" name="specialization" value="Crewmate" defaultChecked />
-                    <label for="spec1">Crewmate</label>
+                <div className="radioBtns" onChange={handleChange}>
+                    <label for="spec1">
+                        <input type="radio" id="spec1" name="specialization" value="Crewmate" defaultChecked />
+                        Crewmate
+                    </label><br />
+                    
+                    <label for="spec2">
                     <input type="radio" id="spec2" name="specialization" value="Imposter"/>
-                    <label for="spec2">Imposter</label>
+                        Imposter
+                    </label><br />
+                     
+                    <label for="spec3">
                     <input type="radio" id="spec3" name="specialization" value="Ghost"/>
-                    <label for="spec3">Ghost</label>
+                        Ghost
+                    </label><br />   
                 </div>
 
                 <br/>

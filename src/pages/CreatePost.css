@@ -10,6 +10,7 @@ input {
 
 label {
     font-size: 20px;
+    display: inline;
 }
 
 textarea {
@@ -17,6 +18,12 @@ textarea {
     width: 100%;
     border: 1px solid transparent;
     font-size: 20px;
+}
+
+input[type=radio] {
+    border: 0px;
+    height: 1em;
+    width: auto;
 }
 
 input[type=submit] {
