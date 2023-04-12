@@ -6,6 +6,7 @@ import { supabase } from '../client'
 const EditPost = ({data}) => {
 
     const {id} = useParams();
+    // eslint-disable-next-line
     const [post, setPost] = useState(data.filter(item => item.id == id)[0]);
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -20,9 +21,11 @@ const EditPost = ({data}) => {
     const updatePost = async (event) => {
         event.preventDefault();
         await supabase
-            .from('Posts')
-            .update({ title: post.title, author: post.author,  description: post.description})
-            .eq('id', id);
+            .from('Crewmates')
+            .update({name: post.name, color: post.color, specialization: post.specialization,
+                        strength: post.strength, dexterity: post.dexterity, 
+                        intelligence: post.intelligence, charisma: post.charisma})
+           .eq('id', id);
         
         window.location ="/";
     }
@@ -31,7 +34,7 @@ const EditPost = ({data}) => {
         event.preventDefault();
 
         await supabase
-            .from('Posts')
+            .from('Crewmates')
             .delete()
             .eq('id', id);
 
@@ -41,17 +44,39 @@ const EditPost = ({data}) => {
     return (
         <div>
             <form>
-                <label for="title">Title</label> <br />
-                <input type="text" id="title" name="title" value={post.title} onChange={handleChange} /><br />
+                <label for="name">Name</label> <br />
+                <input type="text" id="name" value={post.name} onChange={handleChange} name="name" /><br />
                 <br/>
 
-                <label for="author">Author</label><br />
-                <input type="text" id="author" name="author" value={post.author} onChange={handleChange}/><br />
+                <label for="color">Color</label><br />
+                <input type="color" id="color" value={post.color} onChange={handleChange} name="color" /><br />
                 <br/>
 
-                <label for="description">Description</label><br />
-                <textarea rows="5" cols="50" id="description" name="description" value={post.description} onChange={handleChange} >
-                </textarea>
+                <div onChange={handleChange}>
+                    <input type="radio" id="spec1" name="specialization" value="Crewmate" defaultChecked />
+                    <label for="spec1">Crewmate</label>
+                    <input type="radio" id="spec2" name="specialization" value="Imposter"/>
+                    <label for="spec2">Imposter</label>
+                    <input type="radio" id="spec3" name="specialization" value="Ghost"/>
+                    <label for="spec3">Ghost</label>
+                </div>
+
+                <br/>
+
+                <label for="strength">Strength</label><br />
+                <input type="number" id="strength" min="0" max="20" value={post.strength} onChange={handleChange} name="strength" /><br />
+                <br/>
+                
+                <label for="dexterity">Dexterity</label><br />
+                <input type="number" id="dexterity" min="0" max="20" value={post.dexterity} onChange={handleChange} name="dexterity" /><br />
+                <br/>
+
+                <label for="intelligence">Intelligence</label><br />
+                <input type="number" id="intelligence" min="0" max="20" value={post.intelligence} onChange={handleChange} name="intelligence" /><br />
+                <br/>
+
+                <label for="charisma">Charisma</label><br />
+                <input type="number" id="charisma" min="0" max="20" value={post.charisma} onChange={handleChange} name="charisma" /><br />
                 <br/>
                 <input type="submit" onClick={updatePost} value="Submit" />
                 <button className="deleteButton" onClick={deletePost}>Delete</button>

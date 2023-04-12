@@ -14,8 +14,18 @@ const ReadPosts = (props) => {
             {
                 posts && posts.length > 0 ?
                 posts.map((post,index) => 
-                   <Card key={post.id} id={post.id} title={post.title} author={post.author} description={post.description} count={post.betCount} />
-                ) : <h2>{'No Challenges Yet 😞'}</h2>
+                   <Card key={post.id} 
+                        id={post.id} 
+                        name={post.name} 
+                        color={post.color} 
+                        specialization={post.specialization} 
+                        strength={post.strength} 
+                        dexterity={post.dexterity} 
+                        intelligence={post.intelligence} 
+                        charisma={post.charisma} 
+                        count={post.upvoteCount} 
+                   />
+                ) : <h2>{'No mates yet 😞'}</h2>
             }
         </div>  
     )

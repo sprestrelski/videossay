@@ -11,8 +11,8 @@ const Card = (props) =>  {
   const updateCount = async (event) => {
     event.preventDefault();
     await supabase
-      .from('Posts')
-      .update({ betCount: count + 1})
+      .from('Crewmates')
+      .update({ upvoteCount: count + 1})
       .eq('id', props.id)
 
     setCount((count) => count + 1);
@@ -21,10 +21,13 @@ const Card = (props) =>  {
   return (
       <div className="Card">
           <Link to={'edit/'+ props.id}><img className="moreButton" alt="edit button" src={more} /></Link>
-          <h2 className="title">{props.title}</h2>
-          <h3 className="author">{"by " + props.author}</h3>
-          <p className="description">{props.description}</p>
-          <button className="betButton" onClick={updateCount} >👍 Bet Count: {count}</button>
+          <h2 className="name">{props.name}</h2>
+          <h3 className="specialization">{props.specialization}</h3>
+          <p className="strength">Strength: {props.strength}</p>
+          <p className="dexterity">Dexterity: {props.dexterity}</p>
+          <p className="intelligence">Intelligence: {props.intelligence}</p>
+          <p className="charisma">Charisma: {props.charisma}</p>
+          <button className="upvoteButton" onClick={updateCount} >Upvotes: {count}</button>
       </div>
   );
 };
