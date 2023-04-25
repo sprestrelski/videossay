@@ -19,14 +19,21 @@ const DetailPost = () => {
        
     }, []);    
 
+    const returnDate = () => {
+        return post.created_at.split('T')[0];
+      }
+
     // https://stackoverflow.com/questions/3452546/how-do-i-get-the-youtube-video-id-from-a-url
     const getYouTubeID = () => {
-        var video_id = post.url.split("v=")[1];
-        var ampersandPosition = video_id.indexOf('&');
-        if(ampersandPosition !== -1) {
-            video_id = video_id.substring(0, ampersandPosition);
-        }
+        let url = post.url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+        let video_id = (url[2] !== undefined) ? url[2].split(/[^0-9a-z_\-]/i)[0] : url[0]
         console.log(video_id);
+        //return (url[2] !== undefined) ? url[2].split(/[^0-9a-z_\-]/i)[0] : url[0];
+        // var video_id = post.url.split("v=")[1];
+        // var ampersandPosition = video_id.indexOf('&');
+        // if(ampersandPosition !== -1) {
+        //     video_id = video_id.substring(0, ampersandPosition);
+        // }
         return video_id;
     }
     return (
@@ -34,10 +41,8 @@ const DetailPost = () => {
            { post ? <div>
                 <h1>{post.title}</h1>
                 <p className="creator">{post.creator}</p>
-                <p className="created_at">Review Posted: {post.created_at}</p>
                 <p className="desc">
-                    {post.reviewer}'s thoughts:<br/> 
-                    {post.rating}/5 ⭐ <br/>
+                    {post.reviewer} | {post.rating}/5 ⭐ | {returnDate()} <br/>
                     {post.desc}
                 </p>
 

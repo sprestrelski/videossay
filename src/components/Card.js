@@ -18,18 +18,22 @@ const Card = (props) =>  {
     setCount((count) => count + 1);
   }
 
+  const returnDate = () => {
+    return props.created_at.split('T')[0];
+  }
+
   return (
       <div className="Card">
           <Link to={'edit/'+ props.id}><img className="moreButton" alt="edit button" src={more} /></Link>
           <Link to={'/' + props.id} style={{ textDecoration: 'none' }}>
             <h2 className="title">{props.title}</h2>
-            <p class="created_at"> created: {props.created_at}</p>
+            <p class="created_at"> {returnDate()} | {props.reviewer} | {count} votes </p>
             <p class="desc"> {props.desc} </p>
           </Link>
           <a href={props.url} target="_blank" rel="noreferrer" >
             <button className="videoBtn">Video</button>
           </a>
-          <button className="upvoteBtn" onClick={updateCount} >Upvotes: {count}</button>
+          <button className="upvoteBtn" onClick={updateCount} >Upvote</button>
       </div>
   );
 };
