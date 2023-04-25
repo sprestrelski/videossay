@@ -22,7 +22,7 @@ const Card = (props) =>  {
       <div className="Card">
           <Link to={'edit/'+ props.id}><img className="moreButton" alt="edit button" src={more} /></Link>
           <h2 className="title">{props.title}</h2>
-          <p> created: {props.created_at}</p>
+          <p class="created_at"> created: {props.created_at}</p>
           <p class="desc"> {props.desc} </p>
           <a href={props.url} target="_blank" rel="noreferrer" >
             <button className="videoButton">Video</button>

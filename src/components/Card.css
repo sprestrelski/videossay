@@ -8,18 +8,21 @@
     margin-bottom: 25px;
     text-align: center;
     width: 80%;
+    display: inline-block;
 }
 
 .title {
     color:white;
     padding-left:30px;
+    text-align: left;
     font-size: 24px;
 }
 
-.author {
+.created_at {
     color:white;
-    margin-bottom: 20px;
-    font-size: 20px;
+    text-align: left;
+    padding-left: 30px;
+    font-size: 16px;
 }
 
 .desc {
@@ -29,7 +32,7 @@
     padding-left: 30px;
     padding-right: 30px;
     margin-bottom: 20px;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .betButton {
