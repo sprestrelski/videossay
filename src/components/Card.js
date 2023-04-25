@@ -21,13 +21,15 @@ const Card = (props) =>  {
   return (
       <div className="Card">
           <Link to={'edit/'+ props.id}><img className="moreButton" alt="edit button" src={more} /></Link>
-          <h2 className="title">{props.title}</h2>
-          <p class="created_at"> created: {props.created_at}</p>
-          <p class="desc"> {props.desc} </p>
+          <Link to={'/' + props.id} style={{ textDecoration: 'none' }}>
+            <h2 className="title">{props.title}</h2>
+            <p class="created_at"> created: {props.created_at}</p>
+            <p class="desc"> {props.desc} </p>
+          </Link>
           <a href={props.url} target="_blank" rel="noreferrer" >
-            <button className="videoButton">Video</button>
+            <button className="videoBtn">Video</button>
           </a>
-          <button className="upvoteButton" onClick={updateCount} >Upvotes: {count}</button>
+          <button className="upvoteBtn" onClick={updateCount} >Upvotes: {count}</button>
       </div>
   );
 };

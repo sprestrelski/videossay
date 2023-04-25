@@ -34,9 +34,10 @@ const ReadPosts = (props) => {
        
         <div className="ReadPosts">
         <p className="sortHeader">Sort by:  
-        <Link to="/"><button className="sortBtn" onClick={sortVotes}> Votes </button></Link>
-        <Link to="/"><button className="sortBtn" onClick={sortRecent}> Recent </button></Link>
         <Link to="/"><button className="sortBtn" onClick={sortTitle}> Title </button></Link>
+        <Link to="/"><button className="sortBtn" onClick={sortRecent}> Recent </button></Link>
+        <Link to="/"><button className="sortBtn" onClick={sortVotes}> Votes </button></Link>
+        
         </p>
             {
                 posts && posts.length > 0 ?
