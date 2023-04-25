@@ -40,3 +40,10 @@ button {
 button:hover {
   border-color: #646cff;
 }
+
+.ReadPosts {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+

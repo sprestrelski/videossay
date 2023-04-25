@@ -16,6 +16,7 @@ const ReadPosts = (props) => {
                 posts.map((post,index) => 
                    <Card key={post.id}
                         id={post.id} 
+                        created_at={post.created_at}
                         title={post.title}
                         desc={post.desc}
                         creator={post.creator}
