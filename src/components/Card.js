@@ -7,12 +7,12 @@ import { supabase } from '../client'
 
 const Card = (props) =>  {
 
-  const [count, setCount] = useState(props.count);
+  const [count, setCount] = useState(props.votes);
   const updateCount = async (event) => {
     event.preventDefault();
     await supabase
-      .from('Crewmates')
-      .update({ upvoteCount: count + 1})
+      .from('Posts')
+      .update({ votes: count + 1})
       .eq('id', props.id)
 
     setCount((count) => count + 1);
@@ -21,12 +21,10 @@ const Card = (props) =>  {
   return (
       <div className="Card">
           <Link to={'edit/'+ props.id}><img className="moreButton" alt="edit button" src={more} /></Link>
-          <h2 className="name">{props.name}</h2>
-          <h3 className="specialization">{props.specialization}</h3>
-          <p className="strength">Strength: {props.strength}</p>
-          <p className="dexterity">Dexterity: {props.dexterity}</p>
-          <p className="intelligence">Intelligence: {props.intelligence}</p>
-          <p className="charisma">Charisma: {props.charisma}</p>
+          <h2 className="title">{props.title}</h2>
+          <a href={props.url} target="_blank" rel="noreferrer" >
+            <button className="videoButton">Video</button>
+          </a>
           <button className="upvoteButton" onClick={updateCount} >Upvotes: {count}</button>
       </div>
   );

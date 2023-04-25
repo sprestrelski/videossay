@@ -3,7 +3,14 @@ import { supabase } from '../client'
 import './CreatePost.css'
 
 const CreatePost = () => {
-    const [post, setPost] = useState({name: "", color: "#FF0000", specialization: "Crewmate", strength: 0, dexterity: 0, intelligence: 0, charisma: 0, upvoteCount: 0});
+    const [post, setPost] = useState({title: "", 
+            desc: "",
+            creator: "",
+            reviewer: "",
+            url: "",
+            video_source: "",
+            rating: 0,
+            votes: 0});
     const handleChange = (event) => {
         const {name, value} = event.target;
 
@@ -18,62 +25,61 @@ const CreatePost = () => {
         event.preventDefault();
 
         await supabase
-            .from('Crewmates')
-            .insert({name: post.name, color: post.color, specialization: post.specialization,
-                     strength: post.strength, dexterity: post.dexterity, 
-                     intelligence: post.intelligence, charisma: post.charisma})
+            .from('Posts')
+            .insert({title: post.title, 
+                        desc: post.desc,
+                        creator: post.creator,
+                        reviewer: post.reviewer,
+                        url: post.url,
+                        video_source: post.video_source,
+                        rating: post.rating,
+                        votes: 0})
             .select();
 
         window.location = "/";
     }
 
-
-    // name, color, specialization, strength, dexterity, intelligence, charisma
     return (
         <div>
             <form>
-                <label for="name">Name</label> <br />
-                <input type="text" id="name" value={post.name} onChange={handleChange} name="name" /><br />
+                <label for="title">Title</label> <br />
+                <input type="text" id="title" value={post.title} onChange={handleChange} name="title" /><br />
                 <br/>
 
-                <label for="color">Color</label><br />
-                <input type="color" id="color" value={post.color} onChange={handleChange} name="color" /><br />
+                <label for="url">URL</label> <br />
+                <input type="text" id="url" value={post.url} onChange={handleChange} name="url" /><br />
                 <br/>
+
+                <label for="creator">Video Creator</label> <br />
+                <input type="text" id="creator" value={post.creator} onChange={handleChange} name="creator" /><br />
+                <br/>
+
+                <label for="reviewer">Reviewer</label> <br />
+                <input type="text" id="reviewer" value={post.reviewer} onChange={handleChange} name="reviewer" /><br />
+                <br/>
+
+                <label for="rating">Rating</label><br />
+                <input type="number" id="rating" min="0" max="5" step="1" pattern="\d+" value={post.rating} onChange={handleChange} name="rating" /><br />
+                <br/>
+                
+                <label for="desc">Review</label> <br />
+                <textarea rows="5" cols="50" id="desc" name="desc" value={post.desc} onChange={handleChange} >
+                </textarea>
+
 
                 <div className="radioBtns" onChange={handleChange}>
-                    <label for="spec1">
-                        <input type="radio" id="spec1" name="specialization" value="Crewmate" defaultChecked />
-                        Crewmate
+                    <label for="vsource1">
+                        <input type="radio" id="vsource1" name="video_source" value="YouTube"/>
+                        YouTube
                     </label><br />
                     
-                    <label for="spec2">
-                    <input type="radio" id="spec2" name="specialization" value="Imposter"/>
-                        Imposter
-                    </label><br />
-                     
-                    <label for="spec3">
-                    <input type="radio" id="spec3" name="specialization" value="Ghost"/>
-                        Ghost
+                    <label for="vsource2">
+                    <input type="radio" id="vsource2" name="video_source" value="Other"/>
+                        Other
                     </label><br />
                     
                 </div>
 
-                <br/>
-
-                <label for="strength">Strength</label><br />
-                <input type="number" id="strength" min="0" max="20" value={post.strength} onChange={handleChange} name="strength" /><br />
-                <br/>
-                
-                <label for="dexterity">Dexterity</label><br />
-                <input type="number" id="dexterity" min="0" max="20" value={post.dexterity} onChange={handleChange} name="dexterity" /><br />
-                <br/>
-
-                <label for="intelligence">Intelligence</label><br />
-                <input type="number" id="intelligence" min="0" max="20" value={post.intelligence} onChange={handleChange} name="intelligence" /><br />
-                <br/>
-
-                <label for="charisma">Charisma</label><br />
-                <input type="number" id="charisma" min="0" max="20" value={post.charisma} onChange={handleChange} name="charisma" /><br />
                 <br/>
 
                 <br/>

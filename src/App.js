@@ -14,7 +14,7 @@ const App = () => {
   useEffect( () => {
     const fetchPosts = async () => {
       const {data} = await supabase
-        .from('Crewmates')
+        .from('Posts')
         .select()
         .order('created_at', {ascending: true})
       
@@ -46,10 +46,9 @@ const App = () => {
     <div className="App">
 
       <div className="header">
-        <h1>crewmates</h1>
+        <h1>videossay</h1>
         <Link to="/"><button className="headerBtn"> Home  </button></Link>
-        <Link to="/new"><button className="headerBtn"> Create Mate </button></Link>
-        <Link to="/gallery"><button className="headerBtn"> Gallery  </button></Link>
+        <Link to="/new"><button className="headerBtn"> New Post </button></Link>
       </div>
         {element}
     </div>

@@ -14,18 +14,18 @@ const ReadPosts = (props) => {
             {
                 posts && posts.length > 0 ?
                 posts.map((post,index) => 
-                   <Card key={post.id} 
+                   <Card key={post.id}
                         id={post.id} 
-                        name={post.name} 
-                        color={post.color} 
-                        specialization={post.specialization} 
-                        strength={post.strength} 
-                        dexterity={post.dexterity} 
-                        intelligence={post.intelligence} 
-                        charisma={post.charisma} 
-                        count={post.upvoteCount} 
+                        title={post.title}
+                        desc={post.desc}
+                        creator={post.creator}
+                        reviewer={post.reviewer}
+                        url={post.url}
+                        video_source={post.video_source}
+                        rating={post.rating} 
+                        votes={post.votes} 
                    />
-                ) : <h2>{'No mates yet 😞'}</h2>
+                ) : <h2>{'No posts yet 😞'}</h2>
             }
         </div>  
     )
